@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now | Admission Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #004a99;
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .contact-info a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Form Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-section {
+            flex: 1;
+            background-color: #0056b3;
+            color: white;
+            padding: 40px;
+            min-width: 300px;
+        }
+
+        .form-section {
+            flex: 1.5;
+            padding: 40px;
+            min-width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #004a99;
+        }
+
+        .info-section h2 {
+            color: #ffcc00;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background-color: #ffcc00;
+            color: #004a99;
+            border: none;
+            padding: 15px 25px;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #e6b800;
+        }
+
+        .call-now {
+            display: inline-block;
+            margin-top: 20px;
+            background: #25d366;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container { margin: 10px; }
+            .info-section { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Admission 2026</h1>
+        </div>
+        <div class="contact-info">
+            Call for Help: <a href="tel:+917478471531">+91 7478471531</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="info-section">
+            <h2>Why Join Us?</h2>
+            <ul style="list-style: none; margin-top: 20px;">
+                <li style="margin-bottom: 15px;">✓ Advanced Curriculum</li>
+                <li style="margin-bottom: 15px;">✓ 100% Placement Support</li>
+                <li style="margin-bottom: 15px;">✓ Industry-Led Training</li>
+                <li style="margin-bottom: 15px;">✓ State-of-the-art Infrastructure</li>
+            </ul>
+            <p style="margin-top: 30px;">Direct Admission Helpline:</p>
+            <a href="tel:+917478471531" class="call-now">Call: 7478471531</a>
+        </div>
+
+        <div class="form-section">
+            <h2>Apply Now</h2>
+            <form action="#">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" placeholder="example@mail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number *</label>
+                    <input type="tel" placeholder="Enter 10 digit mobile number" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Course *</label>
+                    <select required>
+                        <option value="">-- Select Course --</option>
+                        <option value="btech">B.Tech (CSE, Data Science)</option>
+                        <option value="mca">MCA</option>
+                        <option value="bca">BCA</option>
+                        <option value="mtech">M.Tech</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>State *</label>
+                    <input type="text" placeholder="Enter your state" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Register Now</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
