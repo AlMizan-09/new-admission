@@ -1,53 +1,132 @@
-from flask import Flask, render_template, request, redirect
-import requests
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now | Admission Portal</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f7f6; color: #333; }
+        header { background-color: #004a99; color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .contact-info a { color: #ffcc00; text-decoration: none; font-weight: bold; font-size: 1.1rem; }
+        .container { max-width: 900px; margin: 40px auto; background: white; display: flex; flex-wrap: wrap; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .info-section { flex: 1; background-color: #0056b3; color: white; padding: 40px; min-width: 300px; }
+        .form-section { flex: 1.5; padding: 40px; min-width: 300px; }
+        h2 { margin-bottom: 20px; color: #004a99; }
+        .info-section h2 { color: #ffcc00; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
+        .submit-btn { background-color: #ffcc00; color: #004a99; border: none; padding: 15px 25px; width: 100%; font-size: 1.1rem; font-weight: bold; cursor: pointer; border-radius: 4px; transition: background 0.3s; margin-top: 10px; }
+        .submit-btn:hover { background-color: #e6b800; }
+        .call-now { display: inline-block; margin-top: 20px; background: #25d366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; }
+        #statusMessage { margin-top: 15px; font-weight: bold; text-align: center; display: none; }
+        @media (max-width: 768px) { .container { margin: 10px; } .info-section { display: none; } }
+    </style>
+</head>
+<body>
 
-app = Flask(__name__)
+    <header>
+        <div class="logo"><h1>Admission 2026</h1></div>
+        <div class="contact-info">Call for Help: <a href="tel:+917478471531">+91 7478471531</a></div>
+    </header>
 
-# --- CONFIGURATION ---
-TELEGRAM_TOKEN = 'APKA_BOT_TOKEN_YAHAN_DAALEIN'
-TELEGRAM_CHAT_ID = 'APKI_CHAT_ID_YAHAN_DAALEIN'
+    <div class="container">
+        <div class="info-section">
+            <h2>Why Join Us?</h2>
+            <ul style="list-style: none; margin-top: 20px;">
+                <li style="margin-bottom: 15px;">✓ Advanced Curriculum</li>
+                <li style="margin-bottom: 15px;">✓ 100% Placement Support</li>
+                <li style="margin-bottom: 15px;">✓ Industry-Led Training</li>
+                <li style="margin-bottom: 15px;">✓ State-of-the-art Infrastructure</li>
+            </ul>
+            <p style="margin-top: 30px;">Direct Admission Helpline:</p>
+            <a href="tel:+917478471531" class="call-now">Call: 7478471531</a>
+        </div>
 
-def send_telegram_alert(name, email, phone):
-    """Naye registration ka notification bhejne ke liye function"""
-    text = f"🔔 *Naya Registration Aya Hai!*\n\n👤 Naam: {name}\n📧 Email: {email}\n📞 Phone: {phone}"
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": TELEGRAM_CHAT_ID,
-        "text": text,
-        "parse_mode": "Markdown"
-    }
-    try:
-        requests.post(url, data=payload)
-    except Exception as e:
-        print(f"Error sending telegram message: {e}")
+        <div class="form-section">
+            <h2>Apply Now</h2>
+            <form id="admissionForm">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number *</label>
+                    <input type="tel" id="mobile" placeholder="Enter 10 digit mobile number" required>
+                </div>
+                <div class="form-group">
+                    <label>Select Course *</label>
+                    <select id="course" required>
+                        <option value="">-- Select Course --</option>
+                        <option value="B.Tech (CSE, DS)">B.Tech (CSE, Data Science)</option>
+                        <option value="MCA">MCA</option>
+                        <option value="BCA">BCA</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>State *</label>
+                    <input type="text" id="state" placeholder="Enter your state" required>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">Register Now</button>
+                <div id="statusMessage"></div>
+            </form>
+        </div>
+    </div>
 
-# --- ROUTES ---
+    <script>
+        document.getElementById('admissionForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Page reload hone se rokne ke liye
 
-@app.route('/')
-def registration_form():
-    # Simple HTML form
-    return '''
-        <h2>Register Here</h2>
-        <form action="/register" method="POST">
-            <input type="text" name="name" placeholder="Pura Naam" required><br><br>
-            <input type="email" name="email" placeholder="Email ID" required><br><br>
-            <input type="text" name="phone" placeholder="Mobile Number" required><br><br>
-            <button type="submit">Register Karein</button>
-        </form>
-    '''
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('statusMessage');
+            
+            // Input values lena
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const course = document.getElementById('course').value;
+            const state = document.getElementById('state').value;
 
-@app.route('/register', method=['POST'])
-def register():
-    # Form se data nikalna
-    user_name = request.form.get('name')
-    user_email = request.form.get('email')
-    user_phone = request.form.get('phone')
+            // --- SETTINGS (Apna Data Yahan Daalein) ---
+            const token = "YOUR_TELEGRAM_BOT_TOKEN"; 
+            const chat_id = "YOUR_TELEGRAM_CHAT_ID";
+            
+            const message = `🎓 *Naya Admission Form!*%0A%0A👤 *Naam:* ${name}%0A📧 *Email:* ${email}%0A📞 *Mobile:* ${mobile}%0A📚 *Course:* ${course}%0A📍 *State:* ${state}`;
 
-    # 1. Yahan aapka Database Save karne ka code ayega (Optional)
-    # 2. Notification bhejna (Hamari Trick)
-    send_telegram_alert(user_name, user_email, user_phone)
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${message}&parse_mode=Markdown`;
 
-    return f"<h3>Dhanyawad {user_name}! Aap register ho chuke hain. Hume notification mil gaya hai.</h3>"
+            // Button ko disable karein
+            btn.innerText = "Sending...";
+            btn.disabled = true;
 
-if __name__ == '__main__':
-    app.run(debug=True)
+            // API Call
+            fetch(url)
+            .then(response => {
+                if(response.ok) {
+                    status.style.display = "block";
+                    status.style.color = "green";
+                    status.innerText = "✅ Registration Successful! We will contact you soon.";
+                    document.getElementById('admissionForm').reset(); // Form clear karein
+                } else {
+                    throw new Error();
+                }
+            })
+            .catch(err => {
+                status.style.display = "block";
+                status.style.color = "red";
+                status.innerText = "❌ Error! Please try again.";
+            })
+            .finally(() => {
+                btn.innerText = "Register Now";
+                btn.disabled = false;
+            });
+        });
+    </script>
+
+</body>
+</html>
