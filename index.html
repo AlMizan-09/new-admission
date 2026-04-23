@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply Now | Admission Portal</title>
+    <title>Apply Now | Brainware University Admission</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
         body { background-color: #f4f7f6; color: #333; }
         header { background-color: #004a99; color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .logo h1 { font-size: 1.5rem; }
         .contact-info a { color: #ffcc00; text-decoration: none; font-weight: bold; font-size: 1.1rem; }
         
-        .container { max-width: 900px; margin: 40px auto; background: white; display: flex; flex-wrap: wrap; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .container { max-width: 1000px; margin: 40px auto; background: white; display: flex; flex-wrap: wrap; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .info-section { flex: 1; background-color: #0056b3; color: white; padding: 40px; min-width: 300px; }
-        .form-section { flex: 1.5; padding: 40px; min-width: 300px; position: relative; }
+        .form-section { flex: 1.5; padding: 40px; min-width: 320px; position: relative; }
         
         h2 { margin-bottom: 20px; color: #004a99; }
-        .info-section h2 { color: #ffcc00; }
+        .info-section h2 { color: #ffcc00; font-size: 1.8rem; }
+        .clg-name { color: #ffcc00; font-weight: bold; margin-bottom: 10px; display: block; font-size: 1.2rem; }
         
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; outline: none; }
-        input:focus { border-color: #004a99; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem; outline: none; background: #fff; }
+        input:focus, select:focus { border-color: #004a99; box-shadow: 0 0 5px rgba(0,74,153,0.2); }
         
+        optgroup { font-weight: bold; color: #004a99; background: #f0f4f8; }
+        option { font-weight: normal; color: #333; background: #fff; }
+
         .submit-btn { background-color: #ffcc00; color: #004a99; border: none; padding: 15px 25px; width: 100%; font-size: 1.1rem; font-weight: bold; cursor: pointer; border-radius: 4px; transition: 0.3s; margin-top: 10px; }
         .submit-btn:hover { background-color: #e6b800; transform: translateY(-2px); }
         
         .call-now { display: inline-block; margin-top: 20px; background: #25d366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
         .call-now:hover { background: #1ebd59; }
-
-        #success-msg { display: none; color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 4px; margin-bottom: 20px; text-align: center; }
 
         @media (max-width: 768px) { .container { margin: 10px; } .info-section { display: none; } }
     </style>
@@ -42,47 +45,100 @@
 
     <div class="container">
         <div class="info-section">
+            <span class="clg-name">Brainware University</span>
             <h2>Why Join Us?</h2>
             <ul style="list-style: none; margin-top: 20px;">
-                <li style="margin-bottom: 15px;">✓ Advanced Curriculum</li>
+                <li style="margin-bottom: 15px;">✓ Advanced Curriculum 2026</li>
                 <li style="margin-bottom: 15px;">✓ 100% Placement Support</li>
-                <li style="margin-bottom: 15px;">✓ Industry-Led Training</li>
-                <li style="margin-bottom: 15px;">✓ State-of-the-art Infrastructure</li>
+                <li style="margin-bottom: 15px;">✓ Top-notch Labs & Faculty</li>
+                <li style="margin-bottom: 15px;">✓ Affordable Fee Structure</li>
             </ul>
             <p style="margin-top: 30px;">Direct Admission Helpline:</p>
             <a href="tel:+917478471531" class="call-now">Call: 7478471531</a>
         </div>
 
         <div class="form-section">
-            <div id="success-msg">Mubarak ho! Aapka registration humein mil gaya hai.</div>
-            
             <h2>Apply Now</h2>
             <form id="admissionForm" action="https://formspree.io/f/mwvawadv" method="POST">
+                
+                <input type="hidden" name="University" value="Brainware University">
+
                 <div class="form-group">
                     <label>Full Name *</label>
                     <input type="text" name="Name" placeholder="Enter your full name" required>
                 </div>
+
                 <div class="form-group">
                     <label>Email Address *</label>
                     <input type="email" name="Email" placeholder="example@mail.com" required>
                 </div>
+
                 <div class="form-group">
                     <label>Mobile Number *</label>
                     <input type="tel" name="Mobile" pattern="[0-9]{10}" title="Please enter 10 digit number" placeholder="Enter 10 digit mobile number" required>
                 </div>
+
                 <div class="form-group">
                     <label>Select Course *</label>
                     <select name="Course" required>
-                        <option value="">-- Select Course --</option>
-                        <option value="btech">B.Tech (CSE, Data Science)</option>
-                        <option value="mca">MCA</option>
-                        <option value="bca">BCA</option>
+                        <option value="">-- Choose your Course --</option>
+                        
+                        <optgroup label="Engineering & Technology">
+                            <option value="B.Tech CSE">B.Tech in CSE</option>
+                            <option value="B.Tech CSE-AIML">B.Tech in CSE (AI & Machine Learning)</option>
+                            <option value="B.Tech CSE-DS">B.Tech in CSE (Data Science)</option>
+                            <option value="B.Tech Cyber Security">B.Tech in Cyber Security</option>
+                            <option value="B.Tech Biotechnology">B.Tech in Biotechnology</option>
+                            <option value="Diploma/LE">Diploma/LE (Lateral Entry)</option>
+                        </optgroup>
+
+                        <optgroup label="Management & Commerce">
+                            <option value="BBA">BBA (General)</option>
+                            <option value="BBA Business Analytics">BBA in Business Analytics</option>
+                            <option value="BBA Digital Marketing">BBA in Digital Marketing</option>
+                            <option value="BBA Hospital Management">BBA in Hospital Management</option>
+                            <option value="B.Com Hons">B.Com (Hons)</option>
+                            <option value="MBA">MBA (Postgraduate)</option>
+                        </optgroup>
+
+                        <optgroup label="Science & Biotechnology">
+                            <option value="B.Sc Biotech">B.Sc Biotechnology (Hons)</option>
+                            <option value="B.Sc Agriculture">B.Sc Agriculture</option>
+                            <option value="B.Sc Food & Nutrition">B.Sc Food Nutrition & Dietetics</option>
+                            <option value="B.Sc Psychology">B.Sc Psychology</option>
+                            <option value="M.Sc">M.Sc (Specializations)</option>
+                        </optgroup>
+
+                        <optgroup label="Medical & Allied Health">
+                            <option value="B.Pharm">B.Pharm (Pharmacy)</option>
+                            <option value="B.Sc Nursing">B.Sc Nursing</option>
+                            <option value="B.Sc Optometry">B.Sc Optometry</option>
+                            <option value="Paramedical">Paramedical Courses</option>
+                        </optgroup>
+
+                        <optgroup label="Law">
+                            <option value="BA LLB">BA LLB (5 years)</option>
+                            <option value="BBA LLB">BBA LLB (5 years)</option>
+                            <option value="LLB">LLB (3 years)</option>
+                        </optgroup>
+
+                        <optgroup label="Media & Design">
+                            <option value="B.Sc Media Science">B.Sc Media Science & Journalism</option>
+                            <option value="B.Sc Animation">B.Sc Animation & Multimedia</option>
+                            <option value="B.Sc VFX Gaming">B.Sc Animation, VFX & Gaming</option>
+                        </optgroup>
+
+                        <optgroup label="Humanities">
+                            <option value="BA English Hons">BA English (Hons)</option>
+                        </optgroup>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label>State *</label>
                     <input type="text" name="State" placeholder="Enter your state" required>
                 </div>
+
                 <button type="submit" class="submit-btn" id="subBtn">Register Now</button>
             </form>
         </div>
@@ -93,9 +149,9 @@
         const subBtn = document.getElementById('subBtn');
 
         form.onsubmit = function() {
-            subBtn.innerText = "Sending...";
+            subBtn.innerText = "Processing...";
             subBtn.style.opacity = "0.7";
-            subBtn.disabled = true; // Double click se bachne ke liye
+            // User ko double click se rokne ke liye
         };
     </script>
 
